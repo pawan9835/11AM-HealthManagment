@@ -1,0 +1,39 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<div th:replace="fragments/commonui :: header"/>
+<body>
+	<div th:replace="fragments/commonui :: usermenu"/>
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-primary text-white text-center">
+				<h1>Welcome to Appoinment Data Page</h1>
+			</div>
+			<div class="card-body">
+				<table class="table table-hover">
+					<tr class="bg-warning ">
+						<td>DOCTOR</td>
+						<td>APPDATE</td>
+						<td>NOOFSLOTS</td>
+						<td>DETAILS</td>
+						<td>APPFEE</td>
+						<td colspan='2'>OPERATIONS</td>
+					</tr>
+					<tr th:each="ob:${list}">
+						<td>[[${ob.doctor.docName}]]</td>
+						<td>[[${ob.appDate}]]</td>
+						<td>[[${ob.noOfSlots}]]</td>
+						<td>[[${ob.details}]]</td>
+						<td>[[${ob.appFee}]]</td>
+						<td><a th:href='@{/appoinment/delete(id=${ob.id})}' class="btn btn-danger">DELETE</a></td>
+						<td><a th:href='@{/appoinment/edit(id=${ob.id})}' class="btn btn-warning">EDIT</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="card-footer bg-info text-white">
+				<b>[[${message}]]</b>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

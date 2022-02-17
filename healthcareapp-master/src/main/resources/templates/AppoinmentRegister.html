@@ -1,0 +1,82 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<div th:replace="fragments/commonui :: header"/>
+
+<body>
+	<div th:replace="fragments/commonui :: usermenu"/>
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-primary text-white">
+				<h1>Welcome to Appoinment Register Page</h1>
+			</div>
+			<div class="card-body">
+				<form id="myForm" th:action="@{/appoinment/save}" method="POST">
+					<!--new Row -->
+					<div class="row">
+						<div class="col-4">
+							<label for="doctor"> DOCTOR</label>
+						</div>
+						<div class="col-4">
+							<select name="doctor.docId" id="doctor" class="form-control">
+								<option value="">--SELECT--</option>
+								<option th:each="ob:${doctors}" th:value="${ob.key}" th:text="${ob.value}" />
+							</select>
+						</div>
+						<div class="col-4" id="doctorError">
+						</div>
+					</div>
+					<!--new Row -->
+					<div class="row">
+						<div class="col-4">
+							<label for="appDate"> APPDATE</label>
+						</div>
+						<div class="col-4">
+							<input type="date" name="appDate" class="form-control" />
+						</div>
+						<div class="col-4" id="appDateError">
+						</div>
+					</div>
+					<!--new Row -->
+					<div class="row">
+						<div class="col-4">
+							<label for="noOfSlots"> NOOFSLOTS</label>
+						</div>
+						<div class="col-4">
+							<input type="number" name="noOfSlots" class="form-control" />
+						</div>
+						<div class="col-4" id="noOfSlotsError">
+						</div>
+					</div>
+					<!--new Row -->
+					<div class="row">
+						<div class="col-4">
+							<label for="details"> DETAILS</label>
+						</div>
+						<div class="col-4">
+							<textarea name="details" class="form-control"></textarea>
+						</div>
+						<div class="col-4" id="detailsError">
+						</div>
+					</div>
+					<!--new Row -->
+					<div class="row">
+						<div class="col-4">
+							<label for="appFee"> APPFEE</label>
+						</div>
+						<div class="col-4">
+							<input type="number" name="appFee" class="form-control" />
+						</div>
+						<div class="col-4" id="appFeeError">
+						</div>
+					</div>
+					<input type="submit" value="Register" class="btn btn-success" />
+				</form>
+			</div>
+			<div class="card-footer bg-info text-white">
+				<b>[[${message}]]</b>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

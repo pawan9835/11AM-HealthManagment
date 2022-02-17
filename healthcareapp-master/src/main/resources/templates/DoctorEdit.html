@@ -1,0 +1,148 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+	<div th:replace="fragments/commonui :: header"/>
+	<body>
+	<div th:replace="fragments/commonui :: usermenu"/>
+		<div class="container">
+			
+			<div class="card">
+				
+				<div class="card-header bg-primary text-white text-center">
+					<h3>DOCTOR EDIT PAGE</h3>
+				</div>
+				
+				<div class="card-body">
+					<form th:action="@{/doctor/update}" method="POST" th:object="${doctor}">
+						<!--row#0-->
+						<div class="row">
+							<div class="col-3">
+								<label>DOCTOR ID </label>
+							</div>
+							<div class="col-4">
+								<input type="text" th:field="*{docId}" class="form-control" readonly/>
+							</div>
+							<div class="col-5">
+								<span id="docIdError"></span>
+							</div>
+						</div>
+						<!--row#1-->
+						<div class="row">
+							<div class="col-3">
+								<label>DOCTOR NAME </label>
+							</div>
+							<div class="col-4">
+								<input type="text" th:field="*{docName}" class="form-control"/>
+							</div>
+							<div class="col-5">
+								<span id="docNameError"></span>
+							</div>
+						</div>
+						
+						<!--row#1-->
+						<div class="row">
+							<div class="col-3">
+								<label>DOCTOR IMAGE </label>
+							</div>
+							<div class="col-4">
+								<input type="file" name="fileOb" id="fileOb" onchange="uploadFile()"/>
+								<input type="text" th:field="*{imageUrl}" class="form-control" readonly/>
+							</div>
+							<div class="col-5">
+								<span id="imageUrlError"></span>
+							</div>
+						</div>
+						
+						<!--row#2-->
+						<div class="row">
+							<div class="col-3">
+								<label>DOCTOR EMAIL</label>
+							</div>
+							<div class="col-4">
+								<input type="text" th:field="*{docEmail}" class="form-control"/>
+							</div>
+							<div class="col-5">
+								<span id="docEmailError"></span>
+							</div>
+						</div>
+						
+						<!--row#integration-->
+						<div class="row">
+							<div class="col-3">
+								<label>DOCTOR SPECIALIZATION</label>
+							</div>
+							<div class="col-4">
+								<select id="specialization" th:field="*{specialization}" class="form-control">
+									<option value="">--SELECT--</option>
+									<option th:each="ob:${specializations}"
+										th:text="${ob.value}"
+										th:value="${ob.key}"
+									/>
+								</select>
+							</div>
+							<div class="col-5">
+								<span id="specializationError"></span>
+							</div>
+						</div>
+						
+						<!--row#3-->
+						<div class="row">
+							<div class="col-3">
+								<label>DOCTOR ADDRESS</label>
+							</div>
+							<div class="col-4">
+								<textarea th:field="*{docAddr}" class="form-control"></textarea>
+							</div>
+							<div class="col-5">
+								<span id="docAddrError"></span>
+							</div>
+						</div>
+						
+						<!--row#4-->
+						<div class="row">
+							<div class="col-3">
+								<label>DOCTOR MOBILE</label>
+							</div>
+							<div class="col-4">
+								<input type="text" th:field="*{docMobile}" class="form-control"/>
+							</div>
+							<div class="col-5">
+								<span id="docMobileError"></span>
+							</div>
+						</div>
+						
+						<!--row#5-->
+						<div class="row">
+							<div class="col-3">
+								<label>DOCTOR GENDER</label>
+							</div>
+							<div class="col-4">
+								<input type="radio" th:field="*{docGen}" value="Male" /> Male
+								<input type="radio" th:field="*{docGen}" value="Female" /> Female
+							</div>
+							<div class="col-5">
+								<span id="docGenError"></span>
+							</div>
+						</div>
+						<!--row#6-->
+						<div class="row">
+							<div class="col-3">
+								<label>DOCTOR NOTE</label>
+							</div>
+							<div class="col-4">
+								<textarea th:field="*{docNote}" class="form-control"></textarea>
+							</div>
+							<div class="col-5">
+								<span id="docNoteError"></span>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-success">Update <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+					</form>
+				</div>
+				<!--card body end-->
+				
+			</div>
+				<!--card  end-->
+		</div>	
+				<!--container end-->
+				<script th:src="@{/myjs/uploadImgBb.js}"></script>		
+	</body>
+</html>
